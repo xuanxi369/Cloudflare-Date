@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="应用程序下载中心" />
+  <title>应用下载中心</title>
+  <style>
+    :root{--bg:#08111f;--panel:#101d31cc;--line:#ffffff18;--text:#edf5ff;--muted:#9db0c9;--blue:#62a9ff;--cyan:#64e6d2}
+    *{box-sizing:border-box}body{margin:0;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;background:radial-gradient(900px 500px at 10% -10%,#174a71 0%,transparent 65%),radial-gradient(700px 500px at 100% 0%,#29305d 0%,transparent 60%),var(--bg);min-height:100vh}
+    .wrap{max-width:1120px;margin:auto;padding:42px 22px 60px}.hero{display:flex;align-items:end;justify-content:space-between;gap:24px;margin:24px 0 42px}.eyebrow{color:var(--cyan);font-weight:700;letter-spacing:.12em;font-size:13px}.hero h1{font-size:clamp(34px,6vw,66px);line-height:1.05;margin:12px 0}.hero p{color:var(--muted);font-size:17px;margin:0;max-width:600px}.badge{border:1px solid var(--line);padding:10px 14px;border-radius:99px;color:var(--muted);white-space:nowrap;background:#ffffff08}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}.card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:26px;backdrop-filter:blur(16px);box-shadow:0 20px 55px #0003}.icon{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(135deg,#62a9ff,#7165f5);font-size:23px}.card h2{margin:20px 0 8px;font-size:25px}.card p{color:var(--muted);line-height:1.6;min-height:50px}.files{display:grid;gap:10px;margin-top:22px}.file{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 14px;border-radius:14px;background:#ffffff08;border:1px solid var(--line)}.file span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}.download{color:#07121f;background:linear-gradient(100deg,var(--cyan),var(--blue));text-decoration:none;font-weight:700;border-radius:10px;padding:9px 12px;font-size:13px}.empty{color:var(--muted);font-size:14px;padding:10px 0}.footer{margin-top:42px;color:#7890ac;font-size:13px;text-align:center}.note{margin-top:24px;padding:14px 18px;border:1px dashed #64e6d255;border-radius:14px;color:#9bb9c4;font-size:13px;line-height:1.6}
+    @media(max-width:650px){.hero{display:block}.badge{display:inline-block;margin-top:20px}}
+  </style>
+</head>
+<body><main class="wrap">
+  <section class="hero"><div><div class="eyebrow">R2 APPLICATION HUB</div><h1>应用下载中心</h1><p>选择你的系统，获取最新、可靠的安装程序。</p></div><div class="badge">安全 · 快速 · 全球可用</div></section>
+  <section id="app" class="grid"></section>
+  <div class="note">提示：请在下方配置中填写 R2 公网访问地址和文件名。R2 的文件夹对应 URL 路径，例如 <code>https://download.example.com/Proxy/app.exe</code>。</div>
+  <div class="footer">由 Cloudflare Pages + R2 提供支持</div>
+</main>
+<script>
+  // ====== 只需修改这里 ======
+  // 推荐给 R2 绑定自定义域名（如 https://download.example.com），不要填写末尾斜杠。
+  const R2_BASE_URL = 'https://YOUR-R2-DOMAIN.example.com';
+  const systems = [
+    {name:'Proxy', icon:'◈', desc:'Proxy 系统应用程序', files:[
+      // {name:'Windows 安装包', file:'ProxySetup.exe'},
+      // {name:'macOS 安装包', file:'Proxy.dmg'},
+    ]},
+    {name:'IIEAO', icon:'✦', desc:'IIEAO 系统应用程序', files:[
+      // {name:'Windows 安装包', file:'IIEAO-Setup.exe'},
+      // {name:'macOS 安装包', file:'IIEAO.dmg'},
+    ]}
+  ];
+  const root=document.querySelector('#app');
+  systems.forEach(s=>{const files=s.files||[]; const card=document.createElement('article'); card.className='card'; card.innerHTML=`<div class="icon">${s.icon}</div><h2>${s.name}</h2><p>${s.desc}</p><div class="files">${files.length?files.map(f=>`<div class="file"><span title="${f.name}">${f.name}</span><a class="download" href="${R2_BASE_URL}/${encodeURIComponent(s.name)}/${encodeURIComponent(f.file)}" download>下载</a></div>`).join(''):'<div class="empty">暂未配置下载文件</div>'}</div>`; root.appendChild(card)});
+</script></body></html>
