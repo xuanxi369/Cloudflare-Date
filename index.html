@@ -31,14 +31,14 @@
        {name:'karing MacOS通用版', file:'karing_1.2.23.2606_macos_universal.dmg'},
        {name:'karing Windows版', file:'karing_1.2.23.2606_windows_x64.exe'},
     ]},
-    {name:'IIEAO', icon:'✦', desc:'IIEAO 系统应用程序', files:[
-       {name:'IIEAO-0.3.0 EXE版', file:'IIEAO_0.3.0_x64-setup.exe'},
-       {name:'IIEAO-0.3.0 MSI版', file:'IIEAO_0.3.0_x64_en-US.msi'}, 
-       {name:'IIEAO-0.3.0 MacOS Intel版', file:'IIEAO_0.3.0_x64.dmg'},
-       {name:'IIEAO-0.3.1 EXE版', file:'IIEAO_0.3.1_x64-setup.exe'},
-       {name:'IIEAO-0.3.1 MSI版', file:'IIEAO_0.3.1_x64_en-US.msi'}, 
-       {name:'IIEAO-0.3.1 MacOS Intel版', file:'IIEAO_0.3.1_x64.dmg'},
-    ]}
+    // {name:'IIEAO', icon:'✦', desc:'IIEAO 系统应用程序', files:[
+    //    {name:'IIEAO-0.3.0 EXE版', file:'IIEAO_0.3.0_x64-setup.exe'},
+    //    {name:'IIEAO-0.3.0 MSI版', file:'IIEAO_0.3.0_x64_en-US.msi'}, 
+    //    {name:'IIEAO-0.3.0 MacOS Intel版', file:'IIEAO_0.3.0_x64.dmg'},
+    //    {name:'IIEAO-0.3.1 EXE版', file:'IIEAO_0.3.1_x64-setup.exe'},
+    //    {name:'IIEAO-0.3.1 MSI版', file:'IIEAO_0.3.1_x64_en-US.msi'}, 
+    //    {name:'IIEAO-0.3.1 MacOS Intel版', file:'IIEAO_0.3.1_x64.dmg'},
+    // ]}
   ];
   const root=document.querySelector('#app');
   systems.forEach(s=>{const files=s.files||[]; const card=document.createElement('article'); card.className='card'; card.innerHTML=`<div class="icon">${s.icon}</div><h2>${s.name}</h2><p>${s.desc}</p><div class="files">${files.length?files.map(f=>`<div class="file"><span title="${f.name}">${f.name}</span><a class="download" href="${R2_BASE_URL}/${encodeURIComponent(s.name)}/${encodeURIComponent(f.file)}" download>下载</a></div>`).join(''):'<div class="empty">暂未配置下载文件</div>'}</div>`; root.appendChild(card)});
